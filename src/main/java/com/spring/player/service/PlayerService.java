@@ -3,16 +3,17 @@ package com.spring.player.service;
 import com.spring.player.model.Player;
 import com.spring.player.repo.PlayerRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class PlayerService {
 
     private final PlayerRepo playerRepo;
 
+    @Autowired
     public PlayerService(PlayerRepo playerRepo) {
         this.playerRepo = playerRepo;
     }

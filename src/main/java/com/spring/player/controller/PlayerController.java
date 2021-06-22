@@ -1,5 +1,6 @@
 package com.spring.player.controller;
 
+import com.spring.player.exception.PlayerExxception;
 import com.spring.player.model.Player;
 import com.spring.player.service.PlayerService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-
 public class PlayerController {
 
     private final PlayerService playerService;
@@ -27,7 +27,11 @@ public class PlayerController {
 
     @GetMapping("/player/{id}")
     public Player getPlayerById(@PathVariable int id){
-        return playerService.getPlayer(id);
+        Player player = playerService.getPlayer(id);
+        if(player == null){
+            throw new PlayerExxception("Player Not Found Id: "+ id);
+        }
+        return player;
     }
 
     @PostMapping("/players")
@@ -42,6 +46,9 @@ public class PlayerController {
 
     @DeleteMapping("/players/{id}")
     public void deletePlayer(@PathVariable int id){
+        if(id <=0){
+            throw new PlayerExxception("Player Not Found Id: "+id);
+        }
         playerService.deletePlayer(id);
     }
 

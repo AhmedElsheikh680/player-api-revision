@@ -34,7 +34,8 @@ public class PlayerService {
         return playerRepo.save(player);
     }
     public void   deletePlayer(int id){
-          playerRepo.deleteById(id);
+
+         playerRepo.deleteById(id);
     }
 
 }
